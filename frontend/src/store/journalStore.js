@@ -63,7 +63,11 @@ const useJournalStore = create((set, get) => ({
       const res = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/journal`,
         {
-          headers: { Authorization: `Bearer ${token}` }, //  Fetch user-specific data
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
         }
       );
 
