@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import useJournalStore from "./store/journalStore";
 import useAuthStore from "./store/authStore"; // Import the auth store
 import AuthButton from "./components/AuthButton";
+import { Navigate } from "react-router-dom";
 
 const App = () => {
   const user = useAuthStore((state) => state.user); // Access the user state
