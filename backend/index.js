@@ -24,10 +24,18 @@ app.use(express.static("public"));
 
 // Define CORS options
 const corsOptions = {
-  origin: [
-    "https://gratitude-journal-frontend-theta.vercel.app",
-    "https://gratitude.indubuilds.xyz",
-  ],
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      "https://gratitude-journal-frontend-theta.vercel.app",
+      "https://gratitude.indubuilds.xyz",
+    ];
+
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
