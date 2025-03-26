@@ -10,22 +10,26 @@ import { VercelRequest, VercelResponse } from "@vercel/node";
 
 const app = express();
 
-app.options("*", cors());
+// app.options("*", cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(
-  cors({
-    origin: [
-      "https://gratitude-journal-frontend-theta.vercel.app",
-      "http://localhost:5173",
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
-);
+
+// Define CORS options
+const corsOptions = {
+  origin: [
+    "https://gratitude-journal-frontend-theta.vercel.app",
+    "http://localhost:5173",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
+// Apply CORS with options
+app.use(cors(corsOptions));
 
 db();
 
@@ -118,6 +122,19 @@ app.get("/api/journal", verifyToken, async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Server error", details: error.message });
   }
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error("Error:", err.message);
+  res.status(err.status || 500).json({
+    error: err.message || "Internal Server Error",
+  });
+});
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ error: "Not Found" });
 });
 
 // Export API handler for Vercel
