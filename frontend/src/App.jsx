@@ -26,6 +26,8 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/journal" element={<JournalCard />} />
               <Route path="/entries" element={<Entries />} />
+              {/* Add catch-all route */}
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>
         </div>
