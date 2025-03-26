@@ -10,6 +10,8 @@ import { VercelRequest, VercelResponse } from "@vercel/node";
 
 const app = express();
 
+app.options("*", cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
