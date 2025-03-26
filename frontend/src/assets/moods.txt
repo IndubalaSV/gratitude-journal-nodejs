@@ -1,0 +1,27 @@
+Happy 😊	#FFD700 (Gold)	Bright & energetic
+Grateful 🙏	#FFB6C1 (Light Pink)	Soft and warm
+Excited 🎉	#FF4500 (Orange Red)	Bold and vibrant
+Calm 🌿	#6B8E23 (Olive Green)	Earthy & peaceful
+Focused 🎯	#4682B4 (Steel Blue)	Deep and thoughtful
+Sad 😢	#778899 (Light Slate Gray)	Subtle & muted
+Tired 😴	#708090 (Slate Gray)	Dark and soothing
+Inspired 💡	#FF8C00 (Dark Orange)	Bright and motivating
+Relaxed 😌	#20B2AA (Light Sea Green)	Cool & calming
+Angry 😡	#DC143C (Crimson)	Intense and bold
+Loved ❤️	#FF1493 (Deep Pink)	Romantic and warm
+Confident 💪	#8A2BE2 (Blue Violet)	Strong and powerful
+
+[
+"Happy 😊",
+"Sad 😢",
+"Angry 😡",
+"Excited 🎉",
+"Inspired 💡",
+"Relaxed 😌",
+"Grateful 🙏",
+"Calm 🌿",
+"Focused 🎯",
+"Tired 😴",
+"Loved ❤️",
+"Confident 💪",
+ ]

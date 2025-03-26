@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Caveat:wght@400..700&display=swap');
+@import "tailwindcss";
+@plugin "daisyui";
+
+.home {
+    background-image: url("../public/thanksjournal.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.font-caveat {
+    font-family: 'Caveat', cursive;
+}
+
+.allura-regular {
+    font-family: "Allura", cursive;
+    font-weight: 400;
+    font-size: x-large;
+    font-style: normal;
+}
+
+.allura-regular-title {
+    font-family: "Allura", cursive;
+    font-weight: 800;
+    font-size: x-large;
+    font-style: normal;
+    text-transform: capitalize;
+}
