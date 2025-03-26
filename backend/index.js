@@ -10,7 +10,13 @@ dotenv.config();
 
 const app = express();
 
-app.options("*", cors());
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  console.log("Origin:", req.headers.origin);
+  next();
+});
+
+// app.options("*", cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,7 +28,8 @@ const corsOptions = {
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
-  optionsSuccessStatus: 200,
+  optionsSuccessStatus: 204,
+  preflightContinue: false,
 };
 
 // Apply CORS with options
