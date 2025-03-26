@@ -3,14 +3,10 @@ import cors from "cors";
 import db from "./db.js";
 import Entry from "./schema.js";
 import admin from "firebase-admin";
-import { readFile } from "fs/promises";
 import dotenv from "dotenv";
 
 // Initialize dotenv before using env variables
 dotenv.config();
-
-//import vercel
-import { VercelRequest, VercelResponse } from "@vercel/node";
 
 const app = express();
 
@@ -145,3 +141,10 @@ app.use((req, res) => {
 // Export API handler for Vercel
 // export default (req, res) => app(req, res);
 export default app;
+
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
