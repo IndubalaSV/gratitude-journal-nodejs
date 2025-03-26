@@ -4,6 +4,10 @@ import db from "./db.js";
 import Entry from "./schema.js";
 import admin from "firebase-admin";
 import { readFile } from "fs/promises";
+import dotenv from "dotenv";
+
+// Initialize dotenv before using env variables
+dotenv.config();
 
 //import vercel
 import { VercelRequest, VercelResponse } from "@vercel/node";
