@@ -18,14 +18,10 @@ app.use(express.static("public"));
 
 // Define CORS options
 const corsOptions = {
-  origin: [
-    "https://gratitude-journal-frontend-theta.vercel.app",
-    "http://localhost:5173",
-  ],
+  origin: "https://gratitude-journal-frontend-theta.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
-  preflightContinue: false,
   optionsSuccessStatus: 200,
 };
 
