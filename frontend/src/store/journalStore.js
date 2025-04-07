@@ -78,8 +78,37 @@ const useJournalStore = create((set, get) => ({
   },
 
   deleteEntry: async (id) => {
-    await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/entry/${id}`);
-    get().fetchEntries(); // refresh after deleting
+    const token = await getToken();
+
+    if (!token) {
+      console.error("User is not authenticated");
+      return;
+    }
+
+    try {
+      console.log(`Attempting to delete entry ${id}`);
+      const response = await axios.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/entry/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      console.log("Delete response:", response.data);
+      get().fetchEntries(); // refresh after deleting
+    } catch (error) {
+      console.error(
+        "Error deleting entry:",
+        error.response
+          ? `Status: ${error.response.status}, Data: ${JSON.stringify(
+              error.response.data
+            )}`
+          : error
+      );
+    }
   },
 }));
 
