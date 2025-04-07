@@ -56,11 +56,30 @@ app.get("/api/hello", (req, res) => {
   res.json({ message: "Hello from Vercel serverless!" });
 });
 
+// Add OPTIONS handler for /entry/:id endpoint
+app.options("/entry/:id", cors(corsOptions));
+
 // Deleting an entry
-app.delete("/entry/:id", async (req, res) => {
-  let id = req.params.id;
-  let result = await Entry.deleteOne({ _id: id });
-  res.json(result);
+app.delete("/entry/:id", verifyToken, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const userId = req.user.uid;
+
+    // First check if entry belongs to user
+    const entry = await Entry.findOne({ _id: id, userId });
+
+    if (!entry) {
+      return res
+        .status(404)
+        .json({ error: "Entry not found or not authorized" });
+    }
+
+    const result = await Entry.deleteOne({ _id: id });
+    res.json({ message: "Entry deleted successfully", result });
+  } catch (error) {
+    console.error("Error deleting entry:", error);
+    res.status(500).json({ error: "Server error", details: error.message });
+  }
 });
 
 // Ensure Firebase Admin SDK is initialized
