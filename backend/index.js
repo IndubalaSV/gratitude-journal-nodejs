@@ -150,7 +150,7 @@ app.post("/api/journal", verifyToken, async (req, res) => {
 app.get("/api/journal", verifyToken, async (req, res) => {
   try {
     const userId = req.user.uid;
-    const entries = await Entry.find({ userId });
+    const entries = await Entry.find({ userId }).sort({ date: 1 });
 
     res.status(200).json(entries);
   } catch (error) {
