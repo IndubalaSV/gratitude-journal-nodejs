@@ -28,6 +28,7 @@ const corsOptions = {
     const allowedOrigins = [
       "https://gratitude-journal-frontend-theta.vercel.app",
       "https://gratitude.indubuilds.xyz",
+      "https://gratitude-journal-123.vercel.app"
     ];
 
     if (!origin || allowedOrigins.includes(origin)) {
